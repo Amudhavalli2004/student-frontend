@@ -4,35 +4,35 @@ import axios from 'axios'
 import { Link } from 'react-router-dom'
 
 const StudentTable = () => {
-    const [student, setStudent] = useState([])
+  const [student, setStudent] = useState([])
 
-    useEffect(() => {
-      getStudent()
-    }, []) 
+  useEffect(() => {
+    getStudent()
+  }, [])
 
-    const getStudent = () => {
-      axios
-        .get('/getstudent')
-        .then((response) => {
-          console.log(response.data)
-          setStudent(response.data)
-        })
-        .catch((err) => {
-          console.error(err)
-        })
-    }
+  const getStudent = () => {
+    axios
+      .get('/getstudent')
+      .then((response) => {
+        console.log(response.data)
+        setStudent(response.data)
+      })
+      .catch((err) => {
+        console.error(err)
+      })
+  }
 
-    const handleDelete = (regno) => {
-      axios
-        .delete(`/deletestudent/${regno}`)
-        .then(() => {
-          console.log('Student deleted successfully')
-          setStudent(student.filter((item) => item.regno !== regno))
-        })
-        .catch((err) => console.error(err))
-    }
+  const handleDelete = (regno) => {
+    axios
+      .delete(`/deletestudent/${regno}`)
+      .then(() => {
+        console.log('Student deleted successfully')
+        setStudent(student.filter((item) => item.regno !== regno))
+      })
+      .catch((err) => console.error(err))
+  }
   return (
-    <div className='student'>
+    <div className="student">
       <h1>STUDENT DETAILS</h1>
       <div className="table">
         <table>
